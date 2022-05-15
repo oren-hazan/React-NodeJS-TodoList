@@ -1,0 +1,14 @@
+.footer {
+    background-color: black;
+    display: flex;
+    height: 60px;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+}
+
+.dev-name {
+    color: #888888;
+}

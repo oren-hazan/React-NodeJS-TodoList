@@ -1,0 +1,44 @@
+.signup {
+	width: 100vw;
+	min-height: calc(100vh - 80px);
+	display: flex;
+	justify-content: center;
+	margin-top: 10vh;
+}
+
+.signup-card {
+	justify-content: space-around;
+	width: 30vw;
+	height: 100%;
+	background-color: white;
+	border: 2px gray solid;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	align-content: space-between;
+	align-items: center;
+	padding-bottom: 5px;
+	min-width: 250px;
+	margin-bottom: 20px;
+}
+
+.signup-btn {
+	margin: 10px 10px;
+	border-radius: 5px;
+	padding: 5px 15px;
+	color: white;
+	background-color: rgb(74, 83, 255);
+	cursor: pointer;
+	border: none;
+	max-width: 30vw;
+	min-width: 200px;
+}
+
+.have-account {
+	margin-top: 5px;
+	font-size: 11px;
+}
+
+a {
+	color: blue;
+}

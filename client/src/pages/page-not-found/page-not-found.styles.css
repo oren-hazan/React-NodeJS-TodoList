@@ -1,0 +1,27 @@
+.container {
+	width: 100vw;
+	min-height: calc(100vh -80px);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 60px;
+    margin: 80px 20px;
+}
+
+h2 {
+    color: red
+}
+
+.go-back-btn {
+    background-color: rgb(48, 55, 247);
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}

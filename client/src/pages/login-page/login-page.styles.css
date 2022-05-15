@@ -1,0 +1,41 @@
+.login {
+	width: 100vw;
+	min-height: calc(100vh - 80px);
+	display: flex;
+	justify-content: center;
+	margin-top: 10vh;
+}
+
+.login-card {
+	justify-content: space-around;
+	height: 100%;
+	background-color: white;
+	border: 2px gray solid;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	align-content: space-between;
+	align-items: center;
+	width: 30vw;
+	min-width: 250px;
+}
+
+.login-btn {
+	border-radius: 5px;
+	padding: 5px 15px;
+	color: white;
+	background-color: rgb(74, 83, 255);
+	cursor: pointer;
+	border: none;
+	margin: 10px 10px;
+	min-width: 200px;
+}
+
+.forgot-password {
+	margin-top: 15px;
+	font-size: 11px;
+}
+
+a {
+	color: blue;
+}

@@ -1,0 +1,14 @@
+.main-header {
+    display: flex;
+    height: 80px;
+    width: 100vw;
+    background-color: rgb(0, 255, 170);
+    padding: 16px;
+    align-items: center;
+
+}
+
+.main-header h1 {
+    color: white;
+    margin: 0;
+}
