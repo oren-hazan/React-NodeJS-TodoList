@@ -1,5 +1,5 @@
 import React, { useState, useEffect }  from 'react';
-import Loader from '../../components/shared/loader/Loader.comp'
+import Loader from '../../components/shared/loader/Loader.comp';
 import './home-page.styles.css';
 
 const HomePage = () => {

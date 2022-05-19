@@ -1,12 +1,29 @@
-import React from 'react';
-import './header.styles.css'
+import React, { useState } from 'react';
+import './header.styles.css';
+import Sidebar from '../sidebar/Sidebar.comp';
 
 const Header = () => {
-    return (
-			<header className='main-header'>
-                <h1>Todo List</h1>
-            </header>
-		);
-}
+	const [sidebarClass, setSidebarClass] = useState('');
 
-export default Header
+	const showSidebar = () => {
+		setSidebarClass('show');
+	};
+
+	const hideSidebar = () => {
+		setSidebarClass('');
+	};
+
+	return (
+		<header className='main-header'>
+			<h1>Todo List</h1>
+			<div className='hamburger-container' onClick={showSidebar}>
+				<div className='hamburger'></div>
+				<div className='hamburger'></div>
+				<div className='hamburger'></div>
+			</div>
+			<Sidebar className={sidebarClass} hideSidebar={hideSidebar} />
+		</header>
+	);
+};
+
+export default Header;

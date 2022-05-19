@@ -15,7 +15,7 @@
 }
 
 .error-message {
-	margin: 0 auto;
+	margin-left: 15px;
 	font-size: 12px;
 	color: red;
 	max-width: 200px;
