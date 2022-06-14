@@ -14,7 +14,7 @@ const HomePage = () => {
 		
 		isLoading ? <Loader /> : 
 		<main className='home-page'>
-			<h1 className='title'>Home Page</h1>
+			<h1 className='home-title'>Home Page</h1>
 		</main>
 	);
 };

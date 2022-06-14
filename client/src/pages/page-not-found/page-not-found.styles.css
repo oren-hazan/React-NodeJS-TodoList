@@ -1,14 +1,14 @@
 .container {
 	width: 100vw;
-	min-height: calc(100vh -80px);
+	height: 100vh;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
-.title {
+.not-found-title {
     font-size: 60px;
-    margin: 80px 20px;
+    margin: 170px 0 20px 0;
 }
 
 h2 {

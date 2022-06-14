@@ -18,7 +18,7 @@ const [isLoading, setIsLoading] = useState(true);
 		<Loader />
 	) : (
 		<div className='container'>
-			<p className='title'>404</p>
+			<p className='not-found-title'>404</p>
 			<h2>Page Not Found</h2>
 				<button onClick={() => navigate('/')}type='button' className='go-back-btn'>
 					Go Back Home

@@ -1,41 +1,8 @@
-.tasks-container {
+.tasks-page {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-}
-.task-form {
-	margin-top: 20px;
-	min-width: 200px;
-	display: flex;
-	flex-direction: row;
-	border: 2px solid rgb(0, 255, 170);
-	border-radius: 5px;
-	justify-content: space-between;
-	padding: 15px;
-}
-
-.task-input {
-	height: 5vh;
-	width: 40vw;
-	margin-right: 20px;
-	margin-bottom: 2px;
-	padding: 10px;
-	border: none;
-}
-
-.add-task-btn {
-	height: 5vh;
-	border-radius: 5px;
-	border: none;
-	background-color: rgb(0, 255, 170);
-	color: #ffffff;
-	font-weight: bold;
-    cursor: pointer;
-}
-
-.disable {
-	background-color: lightgrey;
-    cursor: default;
+	margin-bottom: 90px;
 }
 
 .added-tasks {

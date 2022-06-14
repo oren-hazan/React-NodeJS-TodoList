@@ -1,5 +1,5 @@
-import React, { useReducer, useState, useEffect } from 'react';
-import {Link, useNavigate} from 'react-router-dom'
+import React, { useReducer, useState, useEffect, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './signup-page.styles.css';
 import CustomInput from '../../components/shared/custom-input/CustomInput.comp';
 import isEmail from 'validator/lib/isEmail';
@@ -13,13 +13,15 @@ import {
 	updatePasswordAction,
 	updateRepeatedPasswordAction,
 } from '../../actions/signup-form.actions';
-import Loader from '../../components/shared/loader/Loader.comp'
-
+import Loader from '../../components/shared/loader/Loader.comp';
+import {AuthContext} from '../../contexts/Auth.context'
 
 const SignupPage = () => {
 	const navigate = useNavigate();
 
 	const [isLoading, setIsLoading] = useState(true);
+
+	const AuthContextValue = useContext(AuthContext);
 
 	const [signupFormState, dispatchSignupFormState] = useReducer(
 		signupReducer,
@@ -132,7 +134,7 @@ const SignupPage = () => {
 		}
 	};
 
-	const handleSignupSubmit = (event) => {
+	const handleSignupSubmit = async (event) => {
 		event.preventDefault();
 		const validities = signupFormState.validities;
 		const values = signupFormState.values;
@@ -143,8 +145,34 @@ const SignupPage = () => {
 			validities.password &&
 			validities.repeatedPassword
 		) {
-			console.log('Signup Success!');
-			navigate('/login')
+			
+			const data = {
+				firstName: signupFormState.values.firstName,
+				lastName: signupFormState.values.lastName,
+				email: signupFormState.values.email,
+				password: signupFormState.values.password,
+			};
+			
+			try {
+				const response = await fetch('http://localhost:3000/users/new', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(data),
+				});
+
+				if (response.status!== 201) {
+					throw new Error();
+				}
+				const responseData = await response.json();
+				const token = responseData.data.token;
+				localStorage.setItem('token', token);
+				AuthContextValue.setUserToken(token)
+				navigate('/tasks');
+			} catch (err) {
+				alert('Something went wrong!');
+			}
 			return;
 		} else {
 			console.log('Signup form is not valid!');
@@ -166,10 +194,13 @@ const SignupPage = () => {
 	};
 
 	useEffect(() => {
+		if (AuthContextValue.userToken) {
+			navigate('/tasks');
+		}
 		setTimeout(() => {
 			setIsLoading(false);
-		}, 1500)
-	}, [])
+		}, 1500);
+	}, []);
 
 	return isLoading ? (
 		<Loader />

@@ -1,56 +1,55 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './tasks-page.styles.css';
 import Loader from '../../components/shared/loader/Loader.comp';
-import CustomInput from '../../components/shared/custom-input/CustomInput.comp';
+import AddTask from '../tasks-page/add-task/AddTask.comp'
+import TasksContainer from './task-container/TasksContainer.comp'
+import { AuthContext } from '../../contexts/Auth.context';
+import { TasksContext } from '../../contexts/tasks.context'
+import { useNavigate } from 'react-router-dom';
+import { initTaskAction } from '../../actions/tasks.actions';
 
 const TasksPage = () => {
+	const authContextValue = useContext(AuthContext);
+	const tasksContextValue = useContext(TasksContext)
+	const navigate = useNavigate();
 	const [isLoading, setIsLoading] = useState(true);
-	const [isValid, setIsValid] = useState(false);
-	const [errorMessage, setErrorMessage] = useState('');
-
-	const handleTaskInput = (e) => {
-		const textInput = e.target.value;
-        console.log(textInput)
-		if (textInput === '') {
-			setErrorMessage('*You must add a task!');
-			setIsValid(false);
-		} else {
-			setIsValid(true)
-            setErrorMessage('')
-			return
-        }
-	};
-
 	useEffect(() => {
-		setTimeout(() => {
-			setIsLoading(false);
-		}, 1500);
+		const getTasks = async () => {
+			try {
+				const response = await fetch('http://localhost:3000/tasks', {
+					headers: {
+						Authorization: 'Bearer ' + authContextValue.userToken,
+					},
+				});
+
+				if (response.status !== 200) throw new Error();
+
+				const responseData = await response.json();
+				const tasks = responseData.data.tasks;
+				const action = initTaskAction(tasks);
+				tasksContextValue.dispatchTasksState(action);
+				setTimeout(() => {
+					setIsLoading(false);
+				}, 1500);
+			} catch (err) {
+				alert('Something went wrong!');
+				navigate('*');
+			}
+		};
+		if (!authContextValue.userToken) {
+			navigate('/login');
+		}
+
+		getTasks();
 	}, []);
 
 	return isLoading ? (
 		<Loader />
 	) : (
-		<div className='tasks-container'>
-			<form className='task-form'>
-				<label className='task-label' htmlFor='add-task' name='add-task'>
-					<CustomInput
-						onInput={handleTaskInput}
-						inputClassName={'task-input'}
-						type='text'
-						id='task-input'
-						name='task-input'
-						isValid={isValid}
-						placeholder='Add Task!'
-						errorMessage={errorMessage}
-						required={true}
-					/>
-				</label>
-				<button className={`add-task-btn ${!isValid ? 'disable' : null}`} disabled={!isValid ? true : false}>
-					Add
-				</button>
-			</form>
-			<div className='added-tasks'>Your list is empty</div>
-		</div>
+		<main className='tasks-page'>
+			<AddTask />
+			<TasksContainer />
+		</main>
 	);
 };
 

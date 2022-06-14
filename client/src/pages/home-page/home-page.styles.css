@@ -1,13 +1,13 @@
 .home-page {
     width: 100vw;
-    height: calc(100vh - 140px);
+    height: 100vh;
     background-color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.title {
+.home-title {
     font-size:38px;
     text-align: center;
 }

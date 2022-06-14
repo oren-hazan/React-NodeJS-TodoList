@@ -2,18 +2,27 @@ import signupFormActionTypes from '../actions/signup-form.actions';
 
 export const SIGNUP_FORM_INITIAL_STATE = {
 	values: {
+		firstName: '',
+		lastName: '',
 		email: '',
 		password: '',
+		repeatedPassword: '',
 	},
 
 	validities: {
+		firstName: false,
+		lastName: false,
 		email: false,
 		password: false,
+		repeatedPassword: false,
 	},
 
 	errorMessages: {
+		firstName: '',
+		lastName: '',
 		email: '',
 		password: '',
+		repeatedPassword: '',
 	},
 };
 

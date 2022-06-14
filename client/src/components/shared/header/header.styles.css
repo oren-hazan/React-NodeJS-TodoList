@@ -4,10 +4,12 @@
 	align-items: center;
 	height: 90px;
 	width: 100vw;
-	background-color: rgb(0, 255, 170);
+	background-color: #0000ff;
+	position: fixed;
 }
 
 .main-header h1 {
+	padding: 2px;
 	color: white;
 	margin: 0;
 }
